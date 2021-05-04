@@ -1,0 +1,1 @@
+{"ast":null,"code":"export default function calcTotalPrice(cart) {\n  var reducer = function reducer(tally, cartItem) {\n    if (!cartItem.product) return tally; // products can be removed from server, but still in cart\n\n    return tally + cartItem.quantity * cartItem.product.price;\n  };\n\n  return cart.reduce(reducer, 0);\n}","map":null,"metadata":{},"sourceType":"module"}
