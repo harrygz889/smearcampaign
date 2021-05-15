@@ -7,7 +7,7 @@ import calcTotalPrice from '../lib/calcTotalPrice';
 import { useCart } from '../lib/cartState';
 import { Checkout } from './Checkout';
 import CartItem from './CartItem';
-import Shipping from './Shipping';
+import calcShippingPrice from '../lib/calcShippingPrice';
 
 export default function Cart() {
   const me = useUser();
@@ -28,8 +28,12 @@ export default function Cart() {
         ))}
       </ul>
       <footer>
-        <Shipping />
         <p>{formatMoney(calcTotalPrice(me.cart))}</p>
+        <p>Shipping: {formatMoney(calcShippingPrice(me.cart))}</p>
+        <p>
+          Total:{' '}
+          {formatMoney(calcShippingPrice(me.cart) + calcTotalPrice(me.cart))}
+        </p>
         <Checkout />
       </footer>
       <br />
