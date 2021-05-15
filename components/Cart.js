@@ -28,7 +28,7 @@ export default function Cart() {
         ))}
       </ul>
       <footer>
-        {/* <Shipping /> */}
+        <Shipping />
         <p>{formatMoney(calcTotalPrice(me.cart))}</p>
         <Checkout />
       </footer>
