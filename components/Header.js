@@ -5,7 +5,7 @@ import Cart from './Cart';
 import Search from './Search';
 
 const Logo = styled.h1`
-  font-size: 4rem;
+  font-size: 3.5rem;
   margin-left: 2rem;
   position: relative;
   z-index: 2;
@@ -40,7 +40,7 @@ export default function Header() {
     <HeaderStyles>
       <div className="bar">
         <Logo>
-          <Link href="/">Sick Fits</Link>
+          <Link href="/">Smear Campaign</Link>
         </Logo>
         <Nav />
       </div>

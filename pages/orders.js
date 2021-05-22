@@ -13,6 +13,7 @@ const USER_ORDERS_QUERY = gql`
       id
       charge
       total
+      address
       user {
         id
       }

@@ -25,8 +25,8 @@ const CheckoutFormStyles = styled.form`
 `;
 
 const CREATE_ORDER_MUTATION = gql`
-  mutation CREATE_ORDER_MUTATION($token: String!) {
-    checkout(token: $token) {
+  mutation CREATE_ORDER_MUTATION($token: String!, $address: String!) {
+    checkout(token: $token, address: $address) {
       id
       charge
       total
@@ -47,6 +47,15 @@ function CheckoutForm() {
   const elements = useElements();
   const router = useRouter();
   const { closeCart } = useCart();
+  // form variables
+  const [address, setAddress] = useState('');
+  const [state, setState] = useState('');
+  const [postalCode, setPostalCode] = useState('');
+  const [city, setCity] = useState('');
+
+  // should checkout button be disabled?
+  const [hasConfirmedAddress, setHasConfirmedAddress] = useState(false);
+
   const [checkout, { error: graphQLError }] = useMutation(
     CREATE_ORDER_MUTATION,
     {
@@ -66,6 +75,8 @@ function CheckoutForm() {
       type: 'card',
       card: elements.getElement(CardElement),
     });
+    // 4. concat address
+    const fullAddress = `${address} ${city}, ${state} ${postalCode}`.toUpperCase();
     console.log(paymentMethod);
     // 4. handle any errors from stripe
     if (error) {
@@ -77,6 +88,7 @@ function CheckoutForm() {
     const order = await checkout({
       variables: {
         token: paymentMethod.id,
+        address: fullAddress,
       },
     });
     console.log('Finshed with the order');
@@ -86,6 +98,12 @@ function CheckoutForm() {
       pathname: '/order/[id]',
       query: { id: order.data.checkout.id },
     });
+    // 5. Clear form fields
+    setAddress('');
+    setCity('');
+    setState('');
+    setPostalCode('');
+    elements.getElement(CardElement).clear();
     // 7. close the cart
     closeCart();
     // 8. turn the loader off
@@ -93,12 +111,51 @@ function CheckoutForm() {
     nProgress.done();
   }
 
+  if (
+    !hasConfirmedAddress &&
+    address.length &&
+    city.length &&
+    state.length &&
+    postalCode.length
+  ) {
+    setHasConfirmedAddress(true);
+  }
+  if (
+    hasConfirmedAddress &&
+    (!address.length || !city.length || !state.length || !postalCode.length)
+  ) {
+    setHasConfirmedAddress(false);
+  }
   return (
     <CheckoutFormStyles onSubmit={handleSubmit}>
       {error && <p style={{ fontSize: 12 }}>{error.message}</p>}
-      {graphQLError && <p style={{ fontSize: 12 }}>{error.message}</p>}
+      {graphQLError && <p style={{ fontSize: 12 }}>{graphQLError.message}</p>}
+      <input
+        type="text"
+        placeholder="Street Address"
+        value={address}
+        onChange={() => setAddress(event.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="City"
+        value={city}
+        onChange={() => setCity(event.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="State"
+        value={state}
+        onChange={() => setState(event.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Postal Code"
+        value={postalCode}
+        onChange={() => setPostalCode(event.target.value)}
+      />
       <CardElement />
-      <SickButton>check out now</SickButton>
+      <SickButton disabled={!hasConfirmedAddress}>check out now</SickButton>
     </CheckoutFormStyles>
   );
 }

@@ -18,7 +18,7 @@ export default function Product({ product }) {
       </Title>
       <PriceTag>{formatMoney(product.price)}</PriceTag>
       <div className="buttonList">
-        <Link
+        {/* <Link
           href={{
             pathname: 'update',
             query: {
@@ -27,9 +27,9 @@ export default function Product({ product }) {
           }}
         >
           Edit
-        </Link>
+        </Link> */}
         <AddToCart id={product.id} />
-        <DeleteProduct id={product.id}>Delete</DeleteProduct>
+        {/* <DeleteProduct id={product.id}>Delete</DeleteProduct> */}
       </div>
     </ItemStyles>
   );

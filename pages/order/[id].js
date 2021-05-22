@@ -11,6 +11,7 @@ const SINGLE_ORDER_QUERY = gql`
       id
       charge
       total
+      address
       user {
         id
       }
@@ -56,6 +57,10 @@ export default function SingleOrderPage({ query }) {
       <p>
         <span>ItemCount:</span>
         <span>{order.items.length}</span>
+      </p>
+      <p>
+        <span>Address:</span>
+        <span>{order.address}</span>
       </p>
       <div className="items">
         {order.items.map((item) => (

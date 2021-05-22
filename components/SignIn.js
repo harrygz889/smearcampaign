@@ -1,4 +1,5 @@
 import { gql, useMutation } from '@apollo/client';
+import { useRouter } from 'next/dist/client/router';
 import FormStyles from './styles/Form';
 import useForm from '../lib/useForm';
 import { CURRENT_USER_QUERY } from './User';
@@ -23,6 +24,8 @@ const SIGNIN_MUTATION = gql`
 `;
 
 export default function SignIn() {
+  const router = useRouter();
+
   const { inputs, handleChange, resetForm } = useForm({
     email: '',
     password: '',
@@ -36,7 +39,9 @@ export default function SignIn() {
   async function handleSubmit(e) {
     e.preventDefault();
     const res = await signin();
-    console.dir(res);
+    router.push({
+      pathname: '/',
+    });
   }
 
   const error =
