@@ -34,7 +34,7 @@ export default function Cart() {
           Total:{' '}
           {formatMoney(calcShippingPrice(me.cart) + calcTotalPrice(me.cart))}
         </p>
-        <Checkout />
+        {me.cart.length >= 1 && <Checkout />}
       </footer>
       <br />
     </CartStyles>

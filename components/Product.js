@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useState } from 'react';
 import ItemStyles from './styles/ItemStyles';
 import Title from './styles/Title';
 import PriceTag from './styles/PriceTag';
@@ -7,6 +8,13 @@ import DeleteProduct from './DeleteProduct';
 import AddToCart from './AddToCart';
 
 export default function Product({ product }) {
+  const [choseSize, setChoseSize] = useState(false);
+  const [sizeValue, setSizeValue] = useState(null);
+
+  if (choseSize && (sizeValue === null || sizeValue === '')) {
+    setChoseSize(false);
+  }
+
   return (
     <ItemStyles>
       <img
@@ -28,7 +36,22 @@ export default function Product({ product }) {
         >
           Edit
         </Link> */}
-        <AddToCart id={product.id} />
+        <AddToCart id={product.id} choseSize={choseSize} size={sizeValue} />
+        <select
+          name="size"
+          id="size-select"
+          value={sizeValue}
+          onChange={() => {
+            setSizeValue(event.target.value);
+            setChoseSize(true);
+          }}
+        >
+          <option value="">Choose a size --</option>
+          <option value="small">Small</option>
+          <option value="medium">Medium</option>
+          <option value="large">Large</option>
+        </select>
+
         {/* <DeleteProduct id={product.id}>Delete</DeleteProduct> */}
       </div>
     </ItemStyles>

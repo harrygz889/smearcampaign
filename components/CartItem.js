@@ -19,6 +19,7 @@ const CartItemStyles = styled.li`
 export default function CartItem({ cartItem }) {
   const { product } = cartItem;
   if (!product) return null;
+  console.log(cartItem);
   return (
     <CartItemStyles>
       <img
@@ -27,7 +28,7 @@ export default function CartItem({ cartItem }) {
         alt={product.name}
       />
       <div>
-        <h3>{product.name}</h3>
+        <h3>{`${product.name} - ${cartItem.size}`}</h3>
         <p>
           {formatMoney(product.price * cartItem.quantity)}
           <br />

@@ -29,15 +29,13 @@ const HeaderStyles = styled.header`
   }
 
   .sub-bar {
-    display: grid;
-    grid-template-columns: 1fr auto;
     border-bottom: 1px solid var(--black, black);
   }
 `;
 
 export default function Header() {
   return (
-    <HeaderStyles>
+    <HeaderStyles width="100%">
       <div className="bar">
         <Logo>
           <Link href="/">Smear Campaign</Link>

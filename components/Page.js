@@ -20,9 +20,14 @@ const GlobalStyles = createGlobalStyle`
     --bs: 0 12px 24px 0 rgba(0,0,0,0.09)
     box-sizing: border-box;
     font-size: 10px;
+    width: 100%;
   }
   *, *:before, *:after {
     box-sizing: inherit;
+  }
+  * {
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
   }
   body {
     font-family: 'radnika_next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -30,6 +35,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     font-size: 1.5rem;
     line-height: 2;
+    width: 100%;
   }
 
   a {
@@ -42,6 +48,9 @@ const GlobalStyles = createGlobalStyle`
   button {
     font-family: 'radnika_next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
+  #page_div {
+    width: 100%;
+  }
 `;
 
 const InnerStyles = styled.div`
@@ -52,7 +61,7 @@ const InnerStyles = styled.div`
 
 export default function Page({ children }) {
   return (
-    <div>
+    <div id="page_div">
       <GlobalStyles />
       <Header />
       <InnerStyles>{children}</InnerStyles>

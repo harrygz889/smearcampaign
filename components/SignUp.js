@@ -30,6 +30,8 @@ export default function SignUp() {
     // refetchQueries: [{ query: CURRENT_USER_QUERY }],
   });
 
+  console.log('length:', inputs.password.length);
+
   async function handleSubmit(e) {
     e.preventDefault();
     const res = await signup().catch(console.error);
@@ -79,7 +81,12 @@ export default function SignUp() {
             onChange={handleChange}
           />
         </label>
-        <button type="submit">Sign In!</button>
+        <button
+          type="submit"
+          disabled={inputs.password.length < 8 || inputs.name === ''}
+        >
+          Sign Up!
+        </button>
       </fieldset>
     </FormStyles>
   );

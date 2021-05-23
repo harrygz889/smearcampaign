@@ -21,6 +21,7 @@ const SINGLE_ORDER_QUERY = gql`
         description
         price
         quantity
+        size
         photo {
           image {
             publicUrlTransformed
@@ -67,7 +68,9 @@ export default function SingleOrderPage({ query }) {
           <div className="order-item" key={item.id}>
             <img src={item.photo.image.publicUrlTransformed} alt={item.title} />
             <div className="item-details">
-              <h2>{item.name}</h2>
+              <h2>
+                {item.name} {item.size ? ` - ${item.size}` : ''}
+              </h2>
               <p>Qty: {item.quantity}</p>
               <p>Each: {formatMoney(item.price)}</p>
               <p>Sub Total: {formatMoney(item.price * item.quantity)}</p>

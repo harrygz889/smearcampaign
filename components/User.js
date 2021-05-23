@@ -10,6 +10,7 @@ export const CURRENT_USER_QUERY = gql`
         cart {
           id
           quantity
+          size
           product {
             id
             price
