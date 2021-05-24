@@ -39,7 +39,6 @@ export default function SignIn() {
   async function handleSubmit(e) {
     e.preventDefault();
     const res = await signin();
-    console.log('res: ', res);
     // only push to homepage if signin was successful
     if (
       res.data.authenticateUserWithPassword.__typename ===

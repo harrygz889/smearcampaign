@@ -31,7 +31,6 @@ export default function RequestReset() {
   async function handleSubmit(e) {
     e.preventDefault();
     const res = await requestReset().catch(console.error);
-    console.dir(res);
   }
 
   if (loading) return <p>Loading...</p>;

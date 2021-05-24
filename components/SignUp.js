@@ -30,12 +30,9 @@ export default function SignUp() {
     // refetchQueries: [{ query: CURRENT_USER_QUERY }],
   });
 
-  console.log('length:', inputs.password.length);
-
   async function handleSubmit(e) {
     e.preventDefault();
     const res = await signup().catch(console.error);
-    console.dir(res);
   }
 
   if (loading) return <p>Loading...</p>;

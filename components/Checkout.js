@@ -67,7 +67,6 @@ function CheckoutForm() {
     // 1. stop the form from submitting and turn loader on
     e.preventDefault();
     setLoading(true);
-    console.log('Submit Checkout TODO');
     // 2. start the page transition
     nProgress.start();
     // 3. create the payment method via stripe (token comes back here if successful)
@@ -77,7 +76,6 @@ function CheckoutForm() {
     });
     // 4. concat address
     const fullAddress = `${address} ${city}, ${state} ${postalCode}`.toUpperCase();
-    console.log(paymentMethod);
     // 4. handle any errors from stripe
     if (error) {
       setError(error);
@@ -91,8 +89,6 @@ function CheckoutForm() {
         address: fullAddress,
       },
     });
-    console.log('Finshed with the order');
-    console.log(order);
     // 6. change the page to view the order
     router.push({
       pathname: '/order/[id]',

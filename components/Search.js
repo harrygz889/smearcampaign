@@ -64,8 +64,6 @@ export default function Search() {
     itemToString: (item) => item?.name || '',
   });
 
-  console.log(data?.searchTerms);
-
   function handleClick(id) {
     router.push({
       pathname: `/product/${id}`,
