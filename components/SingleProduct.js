@@ -24,7 +24,7 @@ const ProductStyles = styled.div`
   }
   .details {
     padding-left: 5rem;
-    font-size: 3rem;
+    font-size: 2rem;
     padding-top: none;
     padding-bottom: none;
     margin: 0;
@@ -38,10 +38,17 @@ const ProductStyles = styled.div`
     }
     h2 {
       margin: 0;
+      margin-bottom: 2rem;
     }
     p {
       padding: 0;
       margin: 0;
+    }
+    span {
+      font-family: Roboto;
+    }
+    .options {
+      margin-top: 2rem;
     }
   }
 `;
@@ -89,7 +96,7 @@ export default function SingleProduct({ id }) {
       <div className="details">
         <h2>{data.Product.name}</h2>
         <span>{data.Product.description}</span>
-        <p>
+        <p className="options">
           <select
             name="size"
             id="size-select"
