@@ -61,7 +61,7 @@ const InnerStyles = styled.div`
 
 export default function Page({ children }) {
   console.log(
-    'Thanks for visiting hayleymoran.com. To get in touch with the developer, please email harry.zum@gmail.com'
+    '🤓🤓🤓🤓🤓🤓🤓🤓🤓Thanks for visiting hayleymoran.com. To get in touch with the developer, please email harry.zum@gmail.com'
   );
   return (
     <div id="page_div">

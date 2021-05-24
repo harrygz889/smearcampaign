@@ -9,9 +9,9 @@ import AddToCart from './AddToCart';
 
 export default function Product({ product }) {
   const [choseSize, setChoseSize] = useState(false);
-  const [sizeValue, setSizeValue] = useState(null);
+  const [sizeValue, setSizeValue] = useState('notset');
 
-  if (choseSize && (sizeValue === null || sizeValue === '')) {
+  if (choseSize && (sizeValue === 'notset' || sizeValue === '')) {
     setChoseSize(false);
   }
 
@@ -50,6 +50,7 @@ export default function Product({ product }) {
           <option value="small">Small</option>
           <option value="medium">Medium</option>
           <option value="large">Large</option>
+          <option value="Xlarge">XL</option>
         </select>
 
         {/* <DeleteProduct id={product.id}>Delete</DeleteProduct> */}

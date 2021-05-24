@@ -64,7 +64,7 @@ const SINGLE_PRODUCT_QUERY = gql`
 
 export default function SingleProduct({ id }) {
   const [choseSize, setChoseSize] = useState(false);
-  const [sizeValue, setSizeValue] = useState(null);
+  const [sizeValue, setSizeValue] = useState('notset');
 
   const { data, loading, error } = useQuery(SINGLE_PRODUCT_QUERY, {
     variables: {
@@ -74,7 +74,7 @@ export default function SingleProduct({ id }) {
   if (loading) return <p>Loading...</p>;
   if (error) return <DisplayError errror={error} />;
 
-  if (choseSize && (sizeValue === null || sizeValue === '')) {
+  if (choseSize && (sizeValue === 'notset' || sizeValue === '')) {
     setChoseSize(false);
   }
   return (
