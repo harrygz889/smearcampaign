@@ -61,12 +61,6 @@ const InnerStyles = styled.div`
 `;
 
 export default function Page({ children }) {
-  useEffect(() => {
-    console.log(
-      '🤓🤓🤓🤓🤓🤓🤓🤓🤓Thanks for visiting hayleymoran.com. To get in touch with the developer, please email harry.zum@gmail.com'
-    );
-  }, []);
-
   return (
     <div id="page_div">
       <GlobalStyles />
