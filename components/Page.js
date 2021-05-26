@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import styled, { createGlobalStyle } from 'styled-components';
+import useEffect from 'react';
 import Header from './Header';
 
 const GlobalStyles = createGlobalStyle`
@@ -60,9 +61,12 @@ const InnerStyles = styled.div`
 `;
 
 export default function Page({ children }) {
-  console.log(
-    '🤓🤓🤓🤓🤓🤓🤓🤓🤓Thanks for visiting hayleymoran.com. To get in touch with the developer, please email harry.zum@gmail.com'
-  );
+  useEffect(() => {
+    console.log(
+      '🤓🤓🤓🤓🤓🤓🤓🤓🤓Thanks for visiting hayleymoran.com. To get in touch with the developer, please email harry.zum@gmail.com'
+    );
+  }, []);
+
   return (
     <div id="page_div">
       <GlobalStyles />
